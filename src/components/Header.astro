@@ -1,0 +1,169 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  active?: string;
+}
+const { active = '' } = Astro.props;
+
+const nav = [
+  { href: '/diensten', label: 'Diensten', key: 'diensten' },
+  { href: '/projecten', label: 'Projecten', key: 'projecten' },
+  { href: '/team', label: 'Team', key: 'team' },
+  { href: '/werken-bij', label: 'Werken bij', key: 'werken' },
+  { href: '/verduurzaming', label: 'Verduurzaming', key: 'duurzaam' },
+  { href: '/over-ons', label: 'Over', key: 'over' },
+];
+---
+
+<header id="site-header" class="fixed top-0 left-0 right-0 z-40 transition-[background-color,border-color] duration-300" data-mode="dark">
+  <div class="container-x flex items-center justify-between h-16 lg:h-[78px]">
+    <Logo variant="light" class="h-on-dark" />
+    <Logo variant="dark" class="h-on-light hidden" />
+
+    <nav class="hidden lg:flex items-center gap-7 xl:gap-9" aria-label="Hoofdnavigatie">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'text-[.85rem] font-normal tracking-[.005em] transition-colors',
+            'nav-link',
+            active === item.key && 'is-active',
+          ]}
+          aria-current={active === item.key ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-3 lg:gap-5">
+      <a href="/contact" class="hidden sm:inline-flex nav-cta items-center gap-2 text-[.82rem]">
+        <span class="serif-italic">Contact</span>
+        <Icon name="arrow-right" size={14} />
+      </a>
+      <button
+        id="nav-toggle"
+        class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-cream/25 text-cream"
+        aria-label="Menu openen"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <Icon name="menu" size={20} />
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-nav"
+    class="lg:hidden hidden border-t border-cream/10 bg-ink/96 backdrop-blur-xl"
+    aria-hidden="true"
+  >
+    <nav class="container-x py-6 grid gap-1.5" aria-label="Mobiel menu">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'flex items-center justify-between py-3 text-[1.05rem] text-ice border-b border-cream/8 transition-colors hover:text-brick-soft',
+            active === item.key && 'text-brick-soft',
+          ]}
+        >
+          <span class="serif">{item.label}</span>
+          <Icon name="chevron-right" size={16} />
+        </a>
+      ))}
+      <a href="/contact" class="flex items-center justify-between py-4 mt-2 text-[1.05rem] text-brick-soft border-b border-cream/8">
+        <span class="serif-italic">Plan een gesprek</span>
+        <Icon name="arrow-right" size={18} />
+      </a>
+    </nav>
+  </div>
+</header>
+<div class="h-16 lg:h-[78px] header-spacer"></div>
+
+<style is:global>
+  #site-header { background-color: transparent; }
+  #site-header .nav-link { color: rgba(241, 236, 227, .82); }
+  #site-header .nav-link:hover { color: rgba(241, 236, 227, 1); }
+  #site-header .nav-link.is-active { color: var(--color-brick-soft); }
+  #site-header .nav-cta {
+    color: var(--color-brick-soft);
+    border-bottom: 1px solid var(--color-brick-soft);
+    padding-bottom: 1px;
+    transition: gap .2s var(--ease-out-quart);
+  }
+  #site-header .nav-cta:hover { gap: 12px; }
+
+  #site-header[data-mode="dark"] .h-on-light { display: none !important; }
+  #site-header[data-mode="dark"] .h-on-dark { display: inline-flex !important; }
+  #site-header[data-mode="dark"] #nav-toggle { color: var(--color-cream); border-color: rgba(241,236,227,.25); }
+
+  #site-header[data-mode="light"] {
+    background-color: rgba(246, 242, 234, .92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(21, 24, 28, .08);
+  }
+  #site-header[data-mode="light"] .nav-link { color: rgba(81, 87, 95, 1); }
+  #site-header[data-mode="light"] .nav-link:hover { color: var(--color-ink); }
+  #site-header[data-mode="light"] .nav-link.is-active { color: var(--color-brick); }
+  #site-header[data-mode="light"] .nav-cta { color: var(--color-brick-deep); border-color: var(--color-brick-deep); }
+  #site-header[data-mode="light"] .h-on-dark { display: none !important; }
+  #site-header[data-mode="light"] .h-on-light { display: inline-flex !important; }
+  #site-header[data-mode="light"] #nav-toggle { color: var(--color-ink); border-color: rgba(21,24,28,.15); }
+
+  body:not(.has-dark-hero) .header-spacer { display: block; }
+  body.has-dark-hero .header-spacer { display: none; }
+</style>
+
+<script>
+  function bindNav() {
+    const btn = document.getElementById('nav-toggle');
+    const panel = document.getElementById('mobile-nav');
+    if (!btn || !panel || btn.dataset.bound === '1') return;
+    btn.dataset.bound = '1';
+    btn.addEventListener('click', () => {
+      const open = panel.classList.toggle('hidden') === false;
+      btn.setAttribute('aria-expanded', String(open));
+      panel.setAttribute('aria-hidden', String(!open));
+    });
+  }
+  function bindHeaderMode() {
+    const header = document.getElementById('site-header');
+    if (!header || header.dataset.modeBound === '1') return;
+    header.dataset.modeBound = '1';
+
+    const main = document.getElementById('main');
+    const firstSection = main?.firstElementChild as HTMLElement | null;
+    const isDarkHero = firstSection?.matches('section') && (
+      firstSection.classList.contains('bg-mesh-ink') ||
+      firstSection.classList.contains('bg-ink') ||
+      firstSection.classList.contains('hero-dark') ||
+      (firstSection.getAttribute('style') || '').includes('100svh') ||
+      firstSection.classList.contains('hero-min-h')
+    );
+    document.body.classList.toggle('has-dark-hero', !!isDarkHero);
+    header.dataset.mode = isDarkHero ? 'dark' : 'light';
+
+    function onScroll() {
+      const threshold = isDarkHero ? (firstSection?.offsetHeight || 0) - 80 : 0;
+      const past = window.scrollY > threshold;
+      header.dataset.mode = (isDarkHero && !past) ? 'dark' : 'light';
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => { bindNav(); bindHeaderMode(); });
+  } else {
+    bindNav();
+    bindHeaderMode();
+  }
+  document.addEventListener('astro:page-load', () => {
+    bindNav();
+    const header = document.getElementById('site-header');
+    if (header) delete header.dataset.modeBound;
+    bindHeaderMode();
+  });
+</script>

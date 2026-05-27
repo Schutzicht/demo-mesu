@@ -1,0 +1,150 @@
+---
+import Icon from './Icon.astro';
+---
+<div
+  id="demo-intro"
+  class="fixed inset-0 z-[100] overflow-y-auto overscroll-contain"
+  data-state="closed"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="demo-intro-title"
+  style="-webkit-overflow-scrolling: touch;"
+>
+  <div class="fixed inset-0 pointer-events-none" aria-hidden="true">
+    <img
+      src="/img/hero.jpg"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover"
+      style="filter: contrast(1.05) saturate(.65) brightness(.45) blur(28px); transform: scale(1.1);"
+      onerror="this.style.display='none'"
+    />
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(21,24,28,.88) 0%, rgba(21,24,28,.78) 50%, rgba(21,24,28,.94) 100%);"></div>
+  </div>
+
+  <div class="relative min-h-full flex items-center justify-center py-8 px-4 sm:px-6">
+  <div class="relative max-w-2xl w-[min(92vw,640px)] mx-auto text-ice" data-intro-card>
+    <div class="border border-cream/12 bg-ink/72 backdrop-blur-xl p-7 sm:p-10 lg:p-12 shadow-[0_60px_120px_-30px_rgba(0,0,0,.7)]" style="border-radius: 4px;">
+      <div class="inline-flex items-center gap-3 mb-7">
+        <span class="inline-block w-10 h-px" style="background: var(--color-brick-soft)"></span>
+        <span class="text-[.66rem] uppercase tracking-[.36em]" style="color: var(--color-brick-soft)">Demo voor Aannemersbedrijf Mesu</span>
+      </div>
+
+      <h2
+        id="demo-intro-title"
+        class="text-ice"
+        style="font-family: var(--font-display); font-weight: 200; font-size: clamp(1.7rem, 3.6vw, 2.4rem); line-height: 1.1; letter-spacing: -0.025em;"
+      >
+        Je staat op het punt een demo te bekijken.
+      </h2>
+
+      <p class="mt-5 text-ice/72 leading-[1.7] font-light text-[.96rem]">
+        Een look-and-feel concept van <span style="color: var(--color-brick-soft); font-style: italic;">Agensea</span> voor Aannemersbedrijf Mesu, om een idee te geven van richting en stijl. Bekijk deze demo met die context in gedachten.
+      </p>
+
+      <ul class="mt-7 grid gap-3.5 text-[.92rem] text-ice/78 font-light">
+        <li class="flex items-start gap-3">
+          <span class="mt-2 inline-block w-3 h-px shrink-0" style="background: var(--color-brick)"></span>
+          <span>Teksten, foto's en projectvoorbeelden zijn richting-gevend, niet definitief.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mt-2 inline-block w-3 h-px shrink-0" style="background: var(--color-brick)"></span>
+          <span>Sfeerbeelden zijn AI-gegenereerd om de visuele richting te tonen, niet eigen Mesu-projecten.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="mt-2 inline-block w-3 h-px shrink-0" style="background: var(--color-brick)"></span>
+          <span>Na akkoord wordt alles, van content tot fotografie tot interactie, exact naar wens ingericht.</span>
+        </li>
+      </ul>
+
+      <div class="mt-9 flex flex-wrap items-center gap-5">
+        <button
+          id="demo-intro-enter"
+          class="btn btn-brick"
+          type="button"
+        >
+          Demo bekijken
+          <Icon name="arrow-right" size={14} class="arrow"/>
+        </button>
+        <span class="text-[.72rem] uppercase tracking-[.28em] text-ice/45">
+          Concept &middot; Niet voor publicatie
+        </span>
+      </div>
+
+      <div class="mt-9 pt-6 border-t border-cream/10 flex items-center justify-between gap-4">
+        <span class="text-[.7rem] uppercase tracking-[.24em] text-ice/40">Met zorg gemaakt door</span>
+        <span class="text-base font-light" style="font-family: var(--font-display); color: var(--color-brick-soft); letter-spacing: -0.015em;">Agensea</span>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<style>
+  #demo-intro {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .5s var(--ease-out-quart);
+  }
+  #demo-intro[data-state="open"] {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #demo-intro[data-state="open"] [data-intro-card] {
+    animation: intro-rise .7s var(--ease-out-quart) both;
+  }
+  @keyframes intro-rise {
+    from { opacity: 0; transform: translateY(28px) scale(.985); }
+    to   { opacity: 1; transform: none; }
+  }
+  body.intro-open { overflow: hidden; }
+</style>
+
+<script>
+  (function () {
+    const KEY = 'mesu-demo-intro-v1';
+    function show() {
+      const el = document.getElementById('demo-intro');
+      if (!el) return;
+      el.setAttribute('data-state', 'open');
+      el.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('intro-open');
+    }
+    function hide() {
+      const el = document.getElementById('demo-intro');
+      if (!el) return;
+      el.setAttribute('data-state', 'closed');
+      el.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('intro-open');
+      try { sessionStorage.setItem(KEY, '1'); } catch (e) { /* ignore */ }
+    }
+    function maybeShow() {
+      if (location.search.includes('nointro')) {
+        try { sessionStorage.setItem(KEY, '1'); } catch (e) { /* ignore */ }
+        return;
+      }
+      let seen = '0';
+      try { seen = sessionStorage.getItem(KEY) || '0'; } catch (e) { /* ignore */ }
+      if (seen !== '1') show();
+    }
+
+    function bind() {
+      const btn = document.getElementById('demo-intro-enter');
+      const overlay = document.getElementById('demo-intro');
+      if (!btn || !overlay || btn.dataset.bound === '1') return;
+      btn.dataset.bound = '1';
+      btn.addEventListener('click', hide);
+      overlay.addEventListener('keydown', (e) => {
+        if ((e as KeyboardEvent).key === 'Escape') hide();
+      });
+      maybeShow();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bind);
+    } else {
+      bind();
+    }
+    document.addEventListener('astro:page-load', bind);
+  })();
+</script>

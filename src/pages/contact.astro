@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { company } from '../data/company';
+---
+
+<Layout title="Contact - Mesu BV Middelburg" active="contact">
+  {/* Hero */}
+  <section class="relative hero-min-h overflow-hidden bg-ink text-ice">
+    <img src="/img/hero-alt.jpg" alt="" class="hero-bg absolute inset-0 w-full h-full object-cover opacity-55" onerror="this.src='/img/hero.jpg'"/>
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(79,107,137,.55) 0%, rgba(79,107,137,.1) 35%, rgba(181,68,61,.18) 65%, rgba(181,68,61,.55) 100%); mix-blend-mode: multiply;"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(21,24,28,.4) 0%, rgba(21,24,28,.55) 60%, rgba(21,24,28,.9) 100%);"></div>
+
+    <div class="relative container-x hero-min-h flex flex-col pt-28 lg:pt-32 pb-10 lg:pb-14">
+      <div class="flex-1 flex flex-col justify-end" data-reveal>
+        <div class="sig-mark text-brick-soft mb-7">Contact</div>
+        <h1 class="editorial-1 text-ice max-w-[20ch]">
+          Plan een gesprek, <span class="serif-italic text-brick-soft">of vraag een offerte aan.</span>
+        </h1>
+        <p class="mt-7 max-w-xl text-ice/72 leading-relaxed">
+          Vertel ons in een paar zinnen wat u in gedachten heeft, dan nemen we binnen een werkdag contact op. Het eerste gesprek is altijd kosteloos en vrijblijvend.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* Contact + form */}
+  <section class="relative bg-paper py-20 md:py-28 lg:py-36 overflow-hidden">
+    <div class="container-x grid lg:grid-cols-12 gap-10 lg:gap-16">
+      <div class="lg:col-span-5 order-2 lg:order-1" data-reveal>
+        <div class="sig-mark text-brick mb-7">Direct</div>
+        <h2 class="editorial-2 text-ink mb-9">Wij staan <span class="serif-italic">u graag te woord.</span></h2>
+
+        <div class="grid gap-7">
+          <a href={`tel:${company.phoneRaw}`} class="block group">
+            <div class="caption text-mortar mb-1">Telefoon</div>
+            <div class="editorial-3 text-ink group-hover:text-brick transition-colors">{company.phone}</div>
+          </a>
+          <a href={`mailto:${company.email}`} class="block group">
+            <div class="caption text-mortar mb-1">E-mail</div>
+            <div class="editorial-3 text-ink group-hover:text-brick transition-colors">{company.email}</div>
+          </a>
+          <div>
+            <div class="caption text-mortar mb-1">Bezoekadres</div>
+            <div class="serif text-ink text-[1.05rem] leading-tight">{company.address.street}<br/>{company.address.postcode} {company.address.city}</div>
+          </div>
+          <div>
+            <div class="caption text-mortar mb-1">Openingstijden</div>
+            <div class="serif text-ink text-[1.05rem] leading-relaxed">{company.hoursWeekdays}<br/><span class="text-mortar">{company.hoursSaturday}</span></div>
+          </div>
+        </div>
+
+        <div class="hairline mt-10"></div>
+        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-[.78rem] text-mortar serif-italic">
+          <span>BouwGarant</span>
+          <span class="text-ink/15">/</span>
+          <span>Bouwend Nederland</span>
+          <span class="text-ink/15">/</span>
+          <span>Lid sinds 2004</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 order-1 lg:order-2" data-reveal data-reveal-delay="1">
+        <form class="grid gap-6" onsubmit="event.preventDefault(); alert('Demo, formulier verstuurt niet.');">
+          <div class="grid sm:grid-cols-2 gap-6">
+            <label class="grid gap-2">
+              <span class="caption text-mortar">Naam</span>
+              <input type="text" class="border-0 border-b border-ink/20 bg-transparent py-2 text-[1.05rem] focus:outline-none focus:border-brick text-ink" placeholder="Uw naam" required />
+            </label>
+            <label class="grid gap-2">
+              <span class="caption text-mortar">Telefoon</span>
+              <input type="tel" class="border-0 border-b border-ink/20 bg-transparent py-2 text-[1.05rem] focus:outline-none focus:border-brick text-ink" placeholder="06 12 34 56 78" />
+            </label>
+          </div>
+          <label class="grid gap-2">
+            <span class="caption text-mortar">E-mailadres</span>
+            <input type="email" class="border-0 border-b border-ink/20 bg-transparent py-2 text-[1.05rem] focus:outline-none focus:border-brick text-ink" placeholder="naam@voorbeeld.nl" required />
+          </label>
+          <label class="grid gap-2">
+            <span class="caption text-mortar">Type project</span>
+            <select class="border-0 border-b border-ink/20 bg-transparent py-2 text-[1.05rem] focus:outline-none focus:border-brick text-ink">
+              <option>Nieuwbouw</option>
+              <option>Verbouw, renovatie</option>
+              <option>Restauratie</option>
+              <option>Onderhoud</option>
+              <option>Badkamer, keuken</option>
+              <option>Anders</option>
+            </select>
+          </label>
+          <label class="grid gap-2">
+            <span class="caption text-mortar">Locatie van het werk</span>
+            <input type="text" class="border-0 border-b border-ink/20 bg-transparent py-2 text-[1.05rem] focus:outline-none focus:border-brick text-ink" placeholder="Plaats" />
+          </label>
+          <label class="grid gap-2">
+            <span class="caption text-mortar">Korte omschrijving</span>
+            <textarea class="border border-ink/20 bg-transparent p-3 text-[1.05rem] focus:outline-none focus:border-brick text-ink resize-none" rows="5" placeholder="Vertel kort wat u in gedachten heeft."></textarea>
+          </label>
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+            <p class="text-xs text-mortar leading-relaxed max-w-md serif-italic">Geen verplichtingen. Wij nemen binnen een werkdag contact op.</p>
+            <button type="submit" class="editorial-link text-brick self-start sm:self-auto">Verstuur aanvraag <Icon name="arrow-right" size={14} /></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  {/* Map */}
+  <section class="relative bg-paper-2 py-20 md:py-28 lg:py-36 overflow-hidden">
+    <div class="container-x grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      <div class="lg:col-span-5" data-reveal>
+        <div class="sig-mark text-brick mb-7">Bezoekadres</div>
+        <h2 class="editorial-2 text-ink">
+          Wilgenhoekweg 40, <span class="serif-italic">Middelburg.</span>
+        </h2>
+        <p class="mt-7 text-mortar leading-relaxed max-w-md">
+          Onze kantoor- en werkplaatslocatie. Op afspraak komt u graag eens langs voor een rondleiding door de timmerwerkplaats.
+        </p>
+        <a href="https://maps.apple.com/?q=Wilgenhoekweg+40,+4333+RG+Middelburg" target="_blank" rel="noopener" class="editorial-link text-ink mt-9">Open in Maps <Icon name="arrow-right" size={14} /></a>
+      </div>
+      <div class="lg:col-span-7" data-reveal data-reveal-delay="2">
+        <div class="frame" style="aspect-ratio: 16/10;">
+          <iframe
+            title="Mesu BV op de kaart"
+            class="w-full h-full"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=3.605%2C51.493%2C3.628%2C51.508&amp;layer=mapnik&amp;marker=51.50%2C3.6165"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

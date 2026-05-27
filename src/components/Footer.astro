@@ -1,0 +1,90 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+---
+
+<footer class="relative bg-ink text-ice overflow-hidden">
+  {/* diagonale brand-flag accentstrook */}
+  <div class="divider-flag w-full"></div>
+
+  <div class="container-x pt-20 lg:pt-28 pb-10 lg:pb-14">
+    {/* Top: wordmark groot */}
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-16 lg:mb-24">
+      <div class="lg:col-span-7" data-reveal>
+        <Logo variant="light" hideWordmark={true} class="mb-7" />
+        <h2 class="editorial-1 text-ice" style="font-size: clamp(2.4rem, 7vw, 5.6rem);">
+          Mesu. <span class="serif-italic text-brick-soft">Sinds 1978.</span>
+        </h2>
+        <p class="mt-7 max-w-md text-ice/65 leading-relaxed">
+          Aannemersbedrijf in Middelburg. Vakwerk in renovatie, nieuwbouw en restauratie, met een vast team en een eigen timmerwerkplaats.
+        </p>
+      </div>
+
+      <div class="lg:col-span-5 lg:pt-12" data-reveal data-reveal-delay="1">
+        <div class="caption text-ice/55 mb-3">Plan een gesprek</div>
+        <a href="tel:+31118613098" class="block editorial-2 text-ice hover:text-brick-soft transition-colors" style="font-size: clamp(1.8rem, 3vw, 2.4rem);">0118&shy;-&shy;61&shy;-&shy;30&shy;-&shy;98</a>
+        <a href="mailto:info@mesubv.nl" class="block serif-italic text-ice/85 mt-3 hover:text-brick-soft transition-colors">info@mesubv.nl</a>
+
+        <div class="hairline-light mt-7"></div>
+
+        <div class="mt-7 grid gap-2 text-[.92rem] text-ice/72 leading-relaxed">
+          <div class="flex items-start gap-3"><Icon name="pin" size={14} class="mt-1 text-ice/45" /> Wilgenhoekweg 40, 4333 RG Middelburg</div>
+          <div class="flex items-start gap-3"><Icon name="clock" size={14} class="mt-1 text-ice/45" /> Maandag tot vrijdag, 07:30 tot 17:00</div>
+        </div>
+      </div>
+    </div>
+
+    {/* Navigation columns */}
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-8 pt-12 lg:pt-16 border-t border-cream/12">
+      <div>
+        <h4 class="caption text-ice/45 mb-5">Diensten</h4>
+        <ul class="grid gap-2 text-[.92rem] text-ice/80">
+          <li><a class="hover:text-brick-soft transition-colors" href="/diensten#nieuwbouw">Nieuwbouw</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="/diensten#verbouw">Verbouw en renovatie</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="/diensten#restauratie">Restauratie</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="/diensten#onderhoud">Onderhoud</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="/diensten#timmerwerk">Machinaal timmerwerk</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="/diensten#interieur">Badkamers, keukens</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="caption text-ice/45 mb-5">Bedrijf</h4>
+        <ul class="grid gap-2 text-[.92rem] text-ice/80">
+          <li><a class="hover:text-brick-soft transition-colors" href="/over-ons">Over Mesu</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="/team">Team</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="/projecten">Projecten</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="/garanties">Garanties</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="/verduurzaming">Verduurzaming</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="/werken-bij">Werken bij Mesu</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="caption text-ice/45 mb-5">Keurmerken</h4>
+        <ul class="grid gap-2 text-[.92rem] text-ice/80">
+          <li><a class="hover:text-brick-soft transition-colors" href="https://www.bouwgarant.nl" target="_blank" rel="noopener">BouwGarant</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="https://www.bouwendnederland.nl" target="_blank" rel="noopener">Bouwend Nederland</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="/garanties">VerBOUWgarantie</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="/garanties">NieuwBOUWgarantie</a></li>
+        </ul>
+      </div>
+      <div class="col-span-2 sm:col-span-3 lg:col-span-1">
+        <h4 class="caption text-ice/45 mb-5">Contact</h4>
+        <ul class="grid gap-2 text-[.92rem] text-ice/80">
+          <li><a class="hover:text-brick-soft transition-colors" href="/contact">Contactpagina</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="tel:+31118613098">0118 - 61 30 98</a></li>
+          <li><a class="hover:text-brick-soft transition-colors" href="mailto:info@mesubv.nl">info@mesubv.nl</a></li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Bottom signature */}
+    <div class="mt-16 pt-7 border-t border-cream/12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[.78rem] text-ice/45">
+      <p>(c) {new Date().getFullYear()} Aannemersbedrijf Mesu B.V. Concept-demo, geen productie-site.</p>
+      <div class="flex items-center gap-6">
+        <a class="hover:text-ice transition-colors" href="/over-ons">Privacy</a>
+        <a class="hover:text-ice transition-colors" href="/over-ons">Voorwaarden</a>
+        <span class="serif-italic text-ice/35">door, Agensea</span>
+      </div>
+    </div>
+  </div>
+</footer>

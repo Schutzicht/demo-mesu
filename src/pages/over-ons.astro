@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { company, stats } from '../data/company';
+
+const milestones = [
+  { year: '1978', title: 'Oprichting', body: 'Mesu start als kleinschalig aannemersbedrijf in Middelburg, met focus op woningbouw en onderhoud in de directe regio.' },
+  { year: '1992', title: 'Eigen timmerwerkplaats', body: 'De eigen werkplaats voor machinaal timmerwerk gaat open. Kozijnen, ramen en maatwerk vanuit Wilgenhoekweg.' },
+  { year: '2004', title: 'BouwGarant aansluiting', body: 'Mesu sluit zich aan bij BouwGarant. Voor opdrachtgevers betekent dit zekerheid op papier voor elk project.' },
+  { year: '2015', title: 'Restauratie-tak', body: 'Specialisatie in restauratie van karakteristieke en monumentale panden in Zeeland.' },
+  { year: '2024', title: 'Tweede generatie', body: 'Verdere uitbouw met jonge vakmensen. Focus op duurzame renovatie naast traditioneel werk.' },
+];
+---
+
+<Layout title="Over Mesu - Aannemersbedrijf Middelburg" active="over">
+  {/* Hero */}
+  <section class="relative hero-min-h overflow-hidden bg-ink text-ice">
+    <img src="/img/hero.jpg" alt="" class="hero-bg absolute inset-0 w-full h-full object-cover opacity-55" onerror="this.style.display='none'"/>
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(79,107,137,.55) 0%, rgba(79,107,137,.1) 35%, rgba(181,68,61,.18) 65%, rgba(181,68,61,.55) 100%); mix-blend-mode: multiply;"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(21,24,28,.4) 0%, rgba(21,24,28,.55) 60%, rgba(21,24,28,.9) 100%);"></div>
+
+    <div class="relative container-x hero-min-h flex flex-col pt-28 lg:pt-32 pb-10 lg:pb-14">
+      <div class="flex-1 flex flex-col justify-end" data-reveal>
+        <div class="sig-mark text-brick-soft mb-7">Over Mesu</div>
+        <h1 class="editorial-1 text-ice max-w-[20ch]">
+          Sinds 1978, gegroeid op <span class="serif-italic text-brick-soft">vakwerk.</span>
+        </h1>
+        <p class="mt-7 max-w-xl text-ice/72 leading-relaxed">
+          Mesu is opgericht in 1978 en groeide uit tot een breed aannemersbedrijf met vaste ploegen, een eigen timmerwerkplaats en een sterke positie in heel Zeeland.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* Verhaal */}
+  <section class="relative bg-paper py-20 md:py-28 lg:py-36 overflow-hidden">
+    <div class="container-x relative">
+      <div class="absolute -top-6 lg:-top-12 left-0 editorial-num">01</div>
+
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start relative">
+        <div class="lg:col-span-5" data-reveal>
+          <div class="sig-mark text-brick mb-7">Ons verhaal</div>
+          <h2 class="editorial-2 text-ink">
+            Vakwerk doorgegeven, <span class="serif-italic">van generatie op generatie.</span>
+          </h2>
+        </div>
+        <div class="lg:col-span-7 lg:pt-6 grid gap-5 text-mortar text-[1.02rem] leading-[1.7]" data-reveal data-reveal-delay="1">
+          <p>Wat begon als een tweemansbedrijf in Middelburg, is uitgegroeid tot een aannemersbedrijf met een vast team van vakmensen, eigen timmerwerkplaats en een breed netwerk van vaste onderaannemers waar we al jaren mee werken.</p>
+          <p>De rode draad door al die jaren is dezelfde gebleven: vakmanschap leveren waar mensen na oplevering nog over praten. Of het nu om een uitbouw aan een rijtjeswoning gaat of een restauratie aan een monumentale gevel in de binnenstad, het werk verdient evenveel zorg.</p>
+          <p>We zijn bewust een regionaal bedrijf gebleven. Onze klanten zijn vaak terugkerend, ons werk staat in de straten waar we zelf wonen en boodschappen doen. Dat houdt scherp.</p>
+        </div>
+      </div>
+
+      <div class="mt-16 lg:mt-24 pt-10 lg:pt-14 border-t border-ink/12">
+        <div class="stat-row text-ink" data-reveal>
+          {stats.map((s) => (
+            <div>
+              <div class="stat-row__n"><span data-count={String(s.value)} data-suffix={s.suffix}>0</span></div>
+              <div class="stat-row__l">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Tijdlijn */}
+  <section class="relative bg-paper-2 py-20 md:py-28 lg:py-36 overflow-hidden">
+    <div class="container-x relative">
+      <div class="absolute -top-6 lg:-top-12 right-0 editorial-num">02</div>
+
+      <header class="relative mb-12 lg:mb-20" data-reveal>
+        <div class="sig-mark text-brick mb-7">Mijlpalen</div>
+        <h2 class="editorial-2 text-ink">
+          Van 1978, <span class="serif-italic">tot vandaag.</span>
+        </h2>
+      </header>
+
+      <ol class="relative grid gap-px bg-ink/12 lg:grid-cols-5">
+        {milestones.map((m, i) => (
+          <li class="bg-paper-2 p-7 lg:p-8" data-reveal data-reveal-delay={String((i % 5) + 1)}>
+            <div class="serif-italic text-brick text-[2.2rem] leading-none">{m.year}</div>
+            <h3 class="editorial-3 text-ink mt-5">{m.title}</h3>
+            <p class="mt-3 text-[.9rem] text-mortar leading-relaxed">{m.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* Werkwijze */}
+  <section class="relative bg-paper py-20 md:py-28 lg:py-36 overflow-hidden">
+    <div class="container-x relative">
+      <div class="absolute -top-6 lg:-top-12 left-0 editorial-num">03</div>
+
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div class="lg:col-span-5 lg:sticky lg:top-32" data-reveal>
+          <div class="sig-mark text-brick mb-7">Werkwijze</div>
+          <h2 class="editorial-2 text-ink">
+            Vier stappen, <span class="serif-italic">geen verrassingen.</span>
+          </h2>
+          <p class="mt-7 text-mortar leading-relaxed max-w-md">
+            Onze opdrachtgevers waarderen vooral de heldere fasering en vaste communicatielijnen.
+          </p>
+        </div>
+        <div class="lg:col-span-7 grid gap-px bg-ink/12">
+          {[
+            { n: '01', t: 'Kennismaking, plan', b: 'Een kosteloos eerste gesprek op locatie. Wij bekijken het werk, denken mee over haalbaarheid en geven een eerste indicatie.' },
+            { n: '02', t: 'Offerte, planning', b: 'Een heldere offerte met fasering, doorlooptijd en de mensen die aan uw project werken. Geen verrassingen achteraf.' },
+            { n: '03', t: 'Uitvoering', b: 'Een vast aanspreekpunt op de bouw, korte lijnen en wekelijkse afstemming. Werk in bewoonde staat is voor ons normaal.' },
+            { n: '04', t: 'Oplevering, service', b: 'Een nette oplevering inclusief opleverdocument. Daarna kunt u rekenen op onze servicedesk voor vragen of aanpassingen.' },
+          ].map((step) => (
+            <div class="bg-paper p-7 lg:p-9 grid grid-cols-[64px_1fr] gap-6 items-start">
+              <div class="serif-italic text-brick text-[1.8rem] leading-none">{step.n}</div>
+              <div>
+                <h3 class="editorial-3 text-ink">{step.t}</h3>
+                <p class="mt-3 text-[.94rem] text-mortar leading-relaxed">{step.b}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Werkplaats */}
+  <section class="relative bg-ink text-ice py-20 md:py-28 lg:py-36 overflow-hidden">
+    <div class="absolute inset-0 bg-grid opacity-20"></div>
+    <div class="container-x relative grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      <div class="lg:col-span-5" data-reveal>
+        <div class="sig-mark text-brick-soft mb-7">Onze werkplaats</div>
+        <h2 class="editorial-2 text-ice">
+          Maatwerk in hout, <span class="serif-italic text-brick-soft">vanuit Middelburg.</span>
+        </h2>
+        <p class="mt-7 text-ice/70 leading-relaxed max-w-md">
+          Aan de Wilgenhoekweg staat onze eigen timmerwerkplaats. Kozijnen, ramen, deuren en bijzondere houtelementen op maat, met grip op kwaliteit en levertijd.
+        </p>
+        <a href="/diensten#timmerwerk" class="editorial-link text-ice mt-9">Bekijk machinaal timmerwerk <Icon name="arrow-right" size={14} /></a>
+      </div>
+      <div class="lg:col-span-7" data-reveal data-reveal-delay="2">
+        <div class="frame frame--light" style="aspect-ratio: 4/3;">
+          <img src="/img/workshop.jpg" alt="Timmerwerkplaats Mesu" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'"/>
+        </div>
+        <div class="caption text-ice/55 mt-3">Wilgenhoekweg 40, Middelburg.</div>
+      </div>
+    </div>
+  </section>
+</Layout>

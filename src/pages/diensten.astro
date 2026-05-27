@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { services } from '../data/services';
+---
+
+<Layout title="Diensten - Mesu BV" active="diensten">
+  {/* Hero */}
+  <section class="relative hero-min-h overflow-hidden bg-ink text-ice">
+    <img src="/img/service-restauratie.jpg" alt="" class="hero-bg absolute inset-0 w-full h-full object-cover opacity-55" onerror="this.style.display='none'"/>
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(79,107,137,.55) 0%, rgba(79,107,137,.1) 35%, rgba(181,68,61,.18) 65%, rgba(181,68,61,.55) 100%); mix-blend-mode: multiply;"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(21,24,28,.4) 0%, rgba(21,24,28,.55) 60%, rgba(21,24,28,.9) 100%);"></div>
+
+    <div class="relative container-x hero-min-h flex flex-col pt-28 lg:pt-32 pb-10 lg:pb-14">
+      <div class="flex-1 flex flex-col justify-end" data-reveal>
+        <div class="sig-mark text-brick-soft mb-7">Diensten</div>
+        <h1 class="editorial-1 text-ice max-w-[18ch]">
+          Zes vakken, <span class="serif-italic text-brick-soft">een ploeg.</span>
+        </h1>
+        <p class="mt-7 max-w-xl text-ice/72 leading-relaxed">
+          Door de breedte van het eigen team coordineren wij projecten zonder ze door te schuiven naar derden. Een vast aanspreekpunt, van offerte tot oplevering.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* Quick nav */}
+  <section class="bg-paper sticky top-16 lg:top-[78px] z-20 border-b border-ink/8">
+    <div class="container-x py-3 lg:py-4 overflow-x-auto -mx-5 sm:-mx-7 px-5 sm:px-7">
+      <div class="flex gap-4 lg:gap-7 min-w-max">
+        {services.map((s, i) => (
+          <a href={`#${s.id}`} class="text-[.82rem] text-mortar hover:text-brick transition-colors serif-italic whitespace-nowrap">{String(i+1).padStart(2,'0')}, {s.title}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Service blocks */}
+  {services.map((s, i) => (
+    <section id={s.id} class={`relative py-20 md:py-28 lg:py-36 overflow-hidden ${i % 2 === 0 ? 'bg-paper' : 'bg-paper-2'}`}>
+      <div class="container-x relative">
+        <div class={`absolute -top-6 lg:-top-12 ${i % 2 === 0 ? 'right-0' : 'left-0'} editorial-num`}>{String(i+1).padStart(2,'0')}</div>
+
+        <div class={`grid lg:grid-cols-12 gap-10 lg:gap-16 items-start relative`}>
+          <div class={`lg:col-span-6 ${i % 2 === 1 ? 'lg:order-2 lg:col-start-7' : ''}`} data-reveal>
+            <div class="sig-mark text-brick mb-7">Dienst {String(i + 1).padStart(2, '0')}</div>
+            <h2 class="editorial-2 text-ink">{s.title}.</h2>
+            <p class="mt-7 text-mortar text-[1.02rem] leading-[1.7] max-w-md">{s.long}</p>
+            <ul class="mt-9 grid gap-3.5 max-w-md">
+              {s.bullets.map((b) => (
+                <li class="flex items-start gap-4 text-[.96rem] text-ink/85">
+                  <span class="inline-block w-6 mt-3 h-px bg-brick shrink-0"></span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="mt-10 flex flex-wrap gap-x-8 gap-y-3">
+              <a href="/contact" class="editorial-link text-ink">Vraag een offerte aan <Icon name="arrow-right" size={14} /></a>
+              <a href="/projecten" class="editorial-link text-mortar">Voorbeelden <Icon name="arrow-right" size={14} /></a>
+            </div>
+          </div>
+
+          <div class={`lg:col-span-6 ${i % 2 === 1 ? 'lg:order-1 lg:col-start-1 lg:row-start-1' : ''}`} data-reveal data-reveal-delay="2">
+            <div class="frame" style="aspect-ratio: 5/4;">
+              <img src={s.image} alt={s.title} class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'"/>
+            </div>
+            <div class="caption text-mortar mt-3">{s.title}, in de praktijk.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  {/* CTA */}
+  <section class="relative bg-ink text-ice py-20 md:py-28 lg:py-36">
+    <div class="container-x text-center max-w-3xl mx-auto" data-reveal>
+      <div class="sig-mark text-brick-soft mx-auto justify-center mb-7">Plan uw project</div>
+      <h2 class="editorial-2 text-ice">
+        Bel of mail ons, <span class="serif-italic text-brick-soft">dan kijken we samen.</span>
+      </h2>
+      <div class="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3">
+        <a href="/contact" class="editorial-link text-ice">Plan een gesprek <Icon name="arrow-right" size={14} /></a>
+        <a href="tel:+31118613098" class="editorial-link text-ice/65">0118 - 61 30 98 <Icon name="arrow-right" size={14} /></a>
+      </div>
+    </div>
+  </section>
+</Layout>
