@@ -8,20 +8,20 @@ import { company, stats, testimonials, bouwgarant } from '../data/company';
 
 <Layout title="Aannemersbedrijf Mesu - Sinds 1978" active="">
   {/* ========================================================
-       HERO, full-bleed editorial met brand flag overlay
+       HERO, full-bleed editorial, beeld dominant
        ======================================================== */}
   <section class="relative hero-min-h overflow-hidden bg-ink text-ice">
     <img
-      src="/img/hero.jpg"
+      src="/img/hero-strong.jpg"
       alt="Restauratie van een Zeeuws gevelhuis bij blauw uur"
       class="hero-bg absolute inset-0 w-full h-full object-cover"
-      onerror="this.style.display='none'"
+      onerror="this.src='/img/hero.jpg'"
     />
-    {/* Brand-flag diagonale tint overlay */}
-    <div class="absolute inset-0" aria-hidden="true">
-      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(79,107,137,.62) 0%, rgba(79,107,137,.18) 35%, rgba(181,68,61,.18) 65%, rgba(181,68,61,.55) 100%); mix-blend-mode: multiply;"></div>
-      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(21,24,28,.3) 0%, rgba(21,24,28,.55) 60%, rgba(21,24,28,.85) 100%);"></div>
-    </div>
+    {/* Subtiele overlays alleen onderkant en linksonder, beeld blijft dominant */}
+    <div class="absolute inset-0 hero-veil" aria-hidden="true"></div>
+    <div class="absolute inset-0 hero-veil-side" aria-hidden="true"></div>
+    {/* Brand-flag accentlijn rechts boven, diagonaal */}
+    <div class="absolute top-0 right-0 bottom-0 w-[42%] pointer-events-none" aria-hidden="true" style="background: linear-gradient(225deg, rgba(181,68,61,.18) 0%, transparent 55%); mix-blend-mode: multiply;"></div>
 
     <div class="relative container-x flex flex-col hero-min-h pt-28 lg:pt-32 pb-10 lg:pb-14">
       {/* top, vertical year mark */}

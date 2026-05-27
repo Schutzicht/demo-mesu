@@ -305,9 +305,19 @@
   .drift-soft, .pulse-soft, .ticker { animation: none; }
 }
 
-/* Hero image grading */
+/* Hero image grading, sterker en levendiger */
 .hero-bg {
-  filter: contrast(1.05) saturate(.92) brightness(.94);
+  filter: contrast(1.12) saturate(1.08) brightness(1) ;
+}
+
+/* Hero overlay, leesbaar maar laat beeld ademen */
+.hero-veil {
+  background:
+    linear-gradient(180deg, rgba(21,24,28,.15) 0%, rgba(21,24,28,0) 28%, rgba(21,24,28,.45) 78%, rgba(21,24,28,.85) 100%);
+}
+.hero-veil-side {
+  background:
+    radial-gradient(60% 80% at 0% 100%, rgba(21,24,28,.55) 0%, transparent 65%);
 }
 
 /* ========================================================

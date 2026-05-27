@@ -30,9 +30,10 @@ const vacancies = [
 <Layout title="Werken bij Mesu - vacatures" active="werken">
   {/* Hero */}
   <section class="relative hero-min-h overflow-hidden bg-ink text-ice">
-    <img src="/img/werken-bij-hero.jpg" alt="" class="hero-bg absolute inset-0 w-full h-full object-cover opacity-60" onerror="this.style.display='none'"/>
-    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(79,107,137,.55) 0%, rgba(79,107,137,.1) 35%, rgba(181,68,61,.18) 65%, rgba(181,68,61,.6) 100%); mix-blend-mode: multiply;"></div>
-    <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(21,24,28,.45) 0%, rgba(21,24,28,.6) 60%, rgba(21,24,28,.92) 100%);"></div>
+    <img src="/img/werken-bij-hero.jpg" alt="" class="hero-bg absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'"/>
+    <div class="absolute inset-0 hero-veil" aria-hidden="true"></div>
+    <div class="absolute inset-0 hero-veil-side" aria-hidden="true"></div>
+    <div class="absolute top-0 right-0 bottom-0 w-[42%] pointer-events-none" aria-hidden="true" style="background: linear-gradient(225deg, rgba(181,68,61,.18) 0%, transparent 55%); mix-blend-mode: multiply;"></div>
 
     <div class="relative container-x hero-min-h flex flex-col pt-28 lg:pt-32 pb-10 lg:pb-14">
       <div class="flex-1 flex flex-col justify-end" data-reveal>

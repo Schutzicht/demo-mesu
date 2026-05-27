@@ -176,6 +176,18 @@ const IMAGES = [
     ].join(" "),
   },
   {
+    name: "hero-strong",
+    prompt: [
+      "Award-winning architectural photography, 16:9, dramatic cinematic shot of a half-restored 17th-century Dutch baksteen gable house in a narrow Zeeland street at the exact moment golden hour ends and blue hour begins.",
+      "The entire warm red-brown brick facade is illuminated with a single warm raking light from the left, throwing the brickwork into sharp tactile relief with deep shadows in every joint.",
+      "Two thirds up, freshly restored cream-painted timber kozijnen glow softly against the darker brick. A slim wrought-iron scaffold-ladder is visible at the right edge, hinting at recent restoration work, partly disassembled.",
+      "Cobblestoned street wet from earlier rain reflects the warm light, leading the eye toward the facade. A single craftsman in a navy boiler suit, far in the distance, walks away carrying a folded ladder, silhouette catching one last ray of sun.",
+      "Composition: low camera angle, facade fills the upper two-thirds of the frame, generous negative space in the upper-left and bottom for a headline overlay.",
+      "Color palette: warm reddish baksteen, deep navy sky, cream kozijnen, hint of cobalt reflection on wet cobbles. High dynamic range, sharp detail, no people in close foreground.",
+      "Strictly no text, no signage, no logos, no high-vis vests.",
+    ].join(" "),
+  },
+  {
     name: "portret-pieter",
     prompt: [
       "Editorial 4:5 portrait of a Dutch master carpenter in his late 50s, weathered but kind face, short greying beard, charcoal work apron over a faded navy long-sleeve.",
